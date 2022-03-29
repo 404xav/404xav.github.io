@@ -1,1 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #F0F0F0;
+        }
+        
+        #head,
+        #content,
+        #foot {
+            width: 70vw;
+            margin-left: 15vw;
+            margin-top: 0.5em;
+            display: inline-block;
+        }
+        
+        #indexlogo {
+            display: block;
+            text-align: center;
+            width: 30%;
+            transform: translate(-50%);
+            margin-left: 50%;
+            margin-top: 5%;
+            border-bottom: solid 1px #F0F0F0;
+        }
+        
+        #indexlogo a {
+            display: block;
+        }
+        
+        .logotxt {
+            height: 60px;
+            line-height: 60px;
+            font-size: 30px;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 0.5em;
+            color: #FFF;
+        }
+        
+        .logobtn {
+            background-color: rgb(53, 140, 187);
+            padding: 0.1em 0.2em;
+            border-radius: 4px;
+            margin-left: 0.1em;
+        }
+        
+        .abouthtml {
+            text-align: center;
+            color: #fff;
+        }
+        
+        .main {
+            font-size: 20px;
+            display: inline-block;
+            text-align: center;
+            border-bottom: solid 1px #F0F0F0;
+            line-height: 1em;
+            
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: rgb(53, 140, 187);
+            padding: 0.5em 0.2em;
+            border-radius: 4px;
+            color: #FFF;
+            text-decoration: unset;
+        }
+        
+        .link a {
+            color: gold;
+            font-size: 20px;
+            display: inline-block;
+            margin: 0.2em 0.5em;
+            text-decoration: unset;
+            border-bottom:double 1px red;
+        }
+        
+        #foot {
+            margin-top: 30px;
+            text-align: center;
+            color: #cecece;
+            font-size: small;
+            line-height: 1.8em;
+            padding-bottom: 3em;
+            font-size: small;
+            margin-bottom: 3em;
+        }
+        
+        #foot p {
+            line-height: 1.5em;
+            padding: 0;
+            margin: 0;
+        }
+        #foot a {
+            color: gold;
+        }
+        
+        @media only screen and (max-width:1199px) {
+            #head,
+            #content,
+            #foot {
+                width: 100vw;
+                margin-left: unset;
+            }
+            #indexlogo {
+                width: 60%;
+            }
+            .abouthtml {
+                width: 98%;
+                margin-left: 1%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="head">
+        <div id="indexlogo">
+            <a href="/" target="_blank" id="home">
+                <div class="logotxt">404<span class="logobtn">XAV</span></div>
+            </a>
+        </div>
+    </div>
+    <div id="content">
+        <div class="abouthtml">
+            <span class="main">
+                <p>您可能會無法正常進入404xav.com</p>
+                <p>建議您收藏好此頁面</p>
+                <a target="_blank" href="/" class="btn" id="go">隨機進入新地址</a>
+                <br>
+                <br>
+            </span>
+            <p>可以使用的地址</p>
+            <span class="link" id="use">
+            </span>
+            <p>永久地址<span style="color:lawngreen;font-size: 9px;">（可能需要VPN或代理）</span></p>
+            <span class="link" id="long">
+            </span>
+        </div>
+    </div>
+    <div id="foot">
+        <span>
+            <p>建議使用<a>歐朋(opera)</a>|<a>谷歌(chrome)</a>或者設備內置瀏覽器</p>
+            <p style="color: red;">其它瀏覽器可能會封鎖我們導致您無法正常使用。</p>
+            <p>404xav.com是一個聚合類型的免費成人站點</p>
+            <p>我們的宗旨是為所有成人愛好者提供完全免費多樣的成人影片</p>
+        </span>
+    </div>
+    <script>
+        var uselink = [
+            '404x94.xyz','2020106.icu',
+        ];
+        var longlink = [
+            '404xav.icu', '404xav.com','xav404.icu','xav404.com'
+        ];
+
+        function addlink(id, arr) {
+            el = document.getElementById(id);
+            arr.forEach(function(e) {
+                el.insertAdjacentHTML('beforeEnd', '<a target="_blank" href="https://' + e + '">' + e + '</a>');
+            });
+        };
+        addlink('use', uselink);
+        addlink('long', longlink);
+        var go = uselink[Math.floor(Math.random() * uselink.length)];
+        var go = uselink[2];
+        document.getElementById('go').href = 'https://' + go;
+        document.getElementById('home').href = 'https://' + go;
+        
+    </script>
+    </body>
+
+</html>
