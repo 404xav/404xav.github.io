@@ -8,6 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta http-equiv="refresh" content="0;url=https://404xav.github.io/home/index.html">
     <style>
         body {
             margin: 0;
@@ -105,7 +106,7 @@
             margin: 0;
         }
         #foot a {
-            color: lawngreen;
+            color: gold;
         }
         
         @media only screen and (max-width:1199px) {
@@ -137,50 +138,22 @@
     <div id="content">
         <div class="abouthtml">
             <span class="main">
-                <p>建議您收藏好此頁面</p>
-                <a target="_blank" href="/" class="btn" id="go">隨機進入新地址</a>
+                <p style="font-size: 24px;">此頁面已作廢！請移步新發佈頁</p>
+                <p></p>
+                <a target="_blank" href="https://404xav.github.io/home/index.html" class="btn" id="go">新發佈頁</a>
                 <br>
                 <br>
             </span>
-            <p>新的地址</p>
-            <span class="link" id="use">
-            </span>
-            <p>永久地址</p>
-            <span class="link" id="long">
-            </span>
+            <p style="color:red;font-size: 13px;">
+                由於我們在中國大陸製作的設備（或瀏覽器）常遭到封鎖。<br>
+                您如果是<span style="color: gold;">中國大陸人士</span>，我們不向您提供任何服務。<br>
+                若您無意間進入404XAV，由於您的地區法律政策要求，<br>
+                請您立即離開404XAV，並且不要向其他人轉發或傳播。<br>
+            </p>
+            
         </div>
     </div>
-    <div id="foot">
-        <span>
-            <p>建議使用<a>非中國大陸</a>製作的瀏覽器訪問</p>
-            <p style="color: red;">中國大陸製作的瀏覽器可能會封鎖我們</p>
-            <p>404xav.com是一個聚合類型的免費成人站點</p>
-            <p>我們的宗旨是為所有成人愛好者提供完全免費多樣的成人影片</p>
-        </span>
-    </div>
-    <script>
-        console.log(document.getElementsByClassName('main')[0]);
-        document.getElementsByClassName('main')[0].insertAdjacentHTML('afterBegin', '<p>您可能會無法正常進入404xav.com</p>');
-        var uselink = [
-            '404xav91.xyz','2020107.icu',
-        ];
-        var longlink = [
-            '404xav.icu', '404xav.com','xav404.icu','xav404.com'
-        ];
-
-        function addlink(id, arr) {
-            el = document.getElementById(id);
-            arr.forEach(function(e) {
-                el.insertAdjacentHTML('beforeEnd', '<a target="_blank" href="https://' + e + '">' + e + '</a>');
-            });
-        };
-        addlink('use', uselink);
-        addlink('long', longlink);
-        var go = uselink[Math.floor(Math.random() * uselink.length)];
-        document.getElementById('go').href = 'https://' + go;
-        document.getElementById('home').href = 'https://' + go;
-        
-    </script>
-    </body>
+    
+</body>
 
 </html>
