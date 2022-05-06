@@ -177,6 +177,7 @@
                     main.insertAdjacentHTML('afterEnd', '<p>新的地址</p><span class="link" id="use"></span>' +
                         '<p>永久地址</p><span class="link" id="long"></span>'
                     );
+                    foot.insertAdjacentHTML('afterBegin',foothtml);
                     function addlink(id, arr) {
                         el = document.getElementById(id);
                         arr.forEach(function (e) {
@@ -191,11 +192,6 @@
                 }
             },1000);
         };
-        setTimeout(function () {
-            foot.insertAdjacentHTML('afterBegin',foothtml);
-        },t*1000);
-        
-        
     </script>
     </body>
 
