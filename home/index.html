@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,7 +68,6 @@
             text-align: center;
             border-bottom: solid 1px #F0F0F0;
             line-height: 1em;
-            
         }
         
         .btn {
@@ -87,7 +85,7 @@
             display: inline-block;
             margin: 0.2em 0.5em;
             text-decoration: unset;
-            border-bottom:double 1px red;
+            border-bottom: double 1px red;
         }
         
         #foot {
@@ -106,9 +104,11 @@
             padding: 0;
             margin: 0;
         }
+        
         #foot a {
             color: lawngreen;
         }
+        
         input {
             font-size: 20px;
             border-radius: 3px;
@@ -142,57 +142,55 @@
             </a>
         </div>
     </div>
-    <div id="content"><div class="abouthtml"><span class="main"></span></div></div>
+    <div id="content">
+        <div class="abouthtml"><span class="main"></span></div>
+    </div>
     <div id="foot"><span></span></div>
     <script>
         var uselink = [
-                '404xav92.xyz', '2020108.icu',
-            ];
-            var longlink = [
-                '404xav.icu', '404xav.com', 'xav404.icu', 'xav404.com'
-            ];
-        var t=3;
+            '404xav92.xyz', '2020108.icu',
+        ];
+        var t = 3;
         var microwap = navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == "micromessenger" ? true : false;
         var main = document.getElementsByClassName('main')[0];
         var foot = document.getElementById('foot').getElementsByTagName('span')[0];
-        var foothtml='<p style="color: red;">中國大陸製作的瀏覽器可能會封鎖我們</p>' +
-            '<p>建議使用<a>非中國大陸</a>製作的瀏覽器訪問</p>' +
-            '<p>404xav.com是一個聚合類型的免費成人站點</p>' +
-            '<p>我們的宗旨是為所有成人愛好者提供完全免費多樣的成人影片</p>';
+        var foothtml = '<p>建議使用<a>Chrome</a>瀏覽器訪問</p>' +
+            '<p>大陸地區請馬上離開，不要瀏覽/轉發</p>' +
+            '<p>404xav是一個非盈利性的聚合站點</p>' +
+            '<p>我們的宗旨是為所有愛好者提供完全免費多樣的影片</p>';
         if (microwap) {
             main.insertAdjacentHTML('beforeEnd', '<p>請使用瀏覽器打開此页面</p>' +
                 '<p>使用Chrome（谷歌瀏覽器）可以解除大部份國家或地區的封鎖</p>' +
                 '<p>拷貝地址：<input onfocus="this.select()" value="' + window.location.href + '"></p>');
         } else {
-            var timer=setInterval(function(){
+            var timer = setInterval(function() {
                 t--;
-                main.innerHTML='<p>防封鎖倒計時：' + t + '秒</p>';
-                if(t<=0){
+                main.innerHTML = '<p>請稍後：' + t + '秒</p>';
+                if (t <= 0) {
                     clearInterval(timer);
-                    main.innerHTML='';
+                    main.innerHTML = '';
                     main.insertAdjacentHTML('afterBegin',
                         '<p>您可能會無法正常進入404xav.com</p>' +
                         '<p>建議您收藏好此頁面</p>' +
-                        '<a href="/" class="btn" id="go">隨機進入新地址</a><br><br>');
-                    main.insertAdjacentHTML('afterEnd', '<p>新的地址</p><span class="link" id="use"></span>' +
-                        '<p>永久地址</p><span class="link" id="long"></span>'
-                    );
-                    foot.insertAdjacentHTML('afterBegin',foothtml);
+                        '<a href="/" class="btn" id="go">進入新地址</a><br><br>');
+                    main.insertAdjacentHTML('afterEnd', '<p>新的地址</p><span class="link" id="use"></span>');
+                    foot.insertAdjacentHTML('afterBegin', foothtml);
+
                     function addlink(id, arr) {
                         el = document.getElementById(id);
-                        arr.forEach(function (e) {
+                        arr.forEach(function(e) {
                             el.insertAdjacentHTML('beforeEnd', '<a href="https://' + e + '">' + e + '</a>');
                         });
                     };
                     addlink('use', uselink);
-                    addlink('long', longlink);
+
                     var go = uselink[Math.floor(Math.random() * uselink.length)];
                     document.getElementById('go').href = 'https://' + go;
                     document.getElementById('home').href = 'https://' + go;
                 }
-            },1000);
+            }, 1000);
         };
     </script>
-    </body>
+</body>
 
 </html>
