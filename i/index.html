@@ -159,6 +159,7 @@
     </div>
     <div id="foot"><span></span></div>
     <script>
+        console.log(window.location.host+window.location.pathname);
         var uselink = [
             '404xav93.xyz', '2020109.icu',
         ];
@@ -175,7 +176,7 @@
             main.innerHTML = '';
             main.insertAdjacentHTML('beforeEnd', '<p>請使用瀏覽器打開此页面</p>' +
                 '<p>使用Chrome（谷歌瀏覽器）可以解除大部份國家或地區的封鎖</p>' +
-                '<p>拷貝地址：<input onfocus="this.select()" value="' + window.location.href + '"></p>');
+                '<p>拷貝地址：<input onfocus="this.select()" value="' + window.location.host + window.location.pathname + '"></p>');
         } else {
             main.innerHTML = '';
             main.insertAdjacentHTML('afterBegin','<br><a id="show" class="btn">取得新地址</a><br><br>');
