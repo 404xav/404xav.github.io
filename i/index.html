@@ -178,10 +178,10 @@
                 '<p>使用Chrome（谷歌瀏覽器）可以解除大部份國家或地區的封鎖</p>' +
                 '<p>拷貝地址：<input onfocus="this.select()" value="' + window.location.host + window.location.pathname + '"></p>');
         } else {
-            main.innerHTML = '';
+            /*main.innerHTML = '';
             main.insertAdjacentHTML('afterBegin','<br><a id="show" class="btn">取得新地址</a><br><br>');
             var show=document.getElementById('show');
-            function showurl() {
+            function showurl() {*/
                 main.innerHTML = '';
                 main.insertAdjacentHTML('afterBegin',
                     '<p>您可能會無法正常進入404xav.com</p>' +
@@ -199,10 +199,10 @@
                 var go = uselink[Math.floor(Math.random() * uselink.length)];
                 document.getElementById('go').href = 'https://' + go;
                 document.getElementById('home').href = 'https://' + go; 
-            }
+            /*}
             show.onclick=function(){
                 showurl();
-            };
+            };*/
         };
     </script>
 </body>
