@@ -34,7 +34,7 @@
             width: 30%;
             transform: translate(-50%);
             margin-left: 50%;
-            margin-top: 5%;
+            margin-top: 1em;
             border-bottom: solid 1px #F0F0F0;
         }
         
@@ -139,6 +139,7 @@
 
 <body>
     <div id="head">
+        <span style="color:red;display: block;font-size: 13px;text-align: center;">使用Chrome（谷歌瀏覽器）可以加速訪問</span>
         <div id="indexlogo">
             <a id="home">
                 <div class="logotxt">404<span class="logobtn">XAV</span></div>
@@ -146,7 +147,8 @@
         </div>
     </div>
     <div id="content">
-        <div class="abouthtml"><span class="main">
+        <div class="abouthtml">
+            <span class="main">
             <h1>404xav-最新地址</h1>
             <p>
                 最新網路上有很多冒牌的404xav網站，
@@ -155,17 +157,19 @@
                 正確的地址有404xav.com、404xav.icu、404xav.vip這幾個地址。
                 除此之外全部都是冒牌的惡意網站，請您詳細辨認。
             </p>
-        </span></div>
+            </span>
+            <span class="showlink"></span>
+        </div>
     </div>
     <div id="foot"><span></span></div>
     <script>
-        console.log(window.location.host+window.location.pathname);
         var uselink = [
             '404xav93.xyz', '2022001.icu',
         ];
         var t = 3;
         var microwap = navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == "micromessenger" ? true : false;
         var main = document.getElementsByClassName('main')[0];
+        var showlink = document.getElementsByClassName('showlink')[0];
         var foot = document.getElementById('foot').getElementsByTagName('span')[0];
         var foothtml = '<p>Android建議使用<a href="https://www.google.cn/chrome/">Chrome</a>瀏覽器</p>' +
             '<p>Iphone建議使用內置<a>Safari</a>瀏覽器</p>' +
@@ -180,16 +184,18 @@
                 '<p>使用Chrome（谷歌瀏覽器）可以解除大部份國家或地區的封鎖</p>' +
                 '<p>拷貝地址：<input onfocus="this.select()" value="' + window.location.host + window.location.pathname + '"></p>');
         } else {
-            /*main.innerHTML = '';
+            /* main.innerHTML = '';
             main.insertAdjacentHTML('afterBegin','<br><a id="show" class="btn">取得新地址</a><br><br>');
-            var show=document.getElementById('show');
-            function showurl() {*/
+            var show=document.getElementById('show'); */
+            function showurl() {
                 main.innerHTML = '';
+                foot.innerHTML = '';
+                showlink.innerHTML = '';
                 main.insertAdjacentHTML('afterBegin',
                     '<p>您可能會無法正常進入404xav.com</p>' +
                     '<p>请记住<span style="color:gold;border-bottom: double 1px red;">404xav.vip</span></p>' +
                     '<a href="/" class="btn" id="go">進入新地址</a><br><br>');
-                main.insertAdjacentHTML('afterEnd', '<p>新的地址</p><span class="link" id="use"></span>');
+                showlink.insertAdjacentHTML('afterBegin', '<p>新的地址</p><span class="link" id="use"></span>');
                 foot.insertAdjacentHTML('afterBegin', foothtml);
                 function addlink(id, arr) {
                     el = document.getElementById(id);
@@ -201,10 +207,14 @@
                 var go = uselink[Math.floor(Math.random() * uselink.length)];
                 document.getElementById('go').href = 'https://' + go;
                 document.getElementById('home').href = 'https://' + go; 
-            /*}
-            show.onclick=function(){
+            }
+            /* show.onclick=function(){
                 showurl();
-            };*/
+            }; */
+            showurl();
+            setInterval(function() {
+				showurl();
+			}, 500);
         };
     </script>
 </body>
