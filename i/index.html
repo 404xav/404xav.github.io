@@ -184,9 +184,18 @@
                 '<p>使用Chrome（谷歌瀏覽器）可以解除大部份國家或地區的封鎖</p>' +
                 '<p>拷貝地址：<input onfocus="this.select()" value="' + window.location.host + window.location.pathname + '"></p>');
         } else {
-            /* main.innerHTML = '';
-            main.insertAdjacentHTML('afterBegin','<br><a id="show" class="btn">取得新地址</a><br><br>');
-            var show=document.getElementById('show'); */
+            function re(id) {
+                let dom=document.getElementById(id);
+                let name=dom.localName;
+                let re=dom.parentNode;
+                let htm=dom.outerHTML;
+                let regex=new RegExp('^(.*?)'+name+'(.*?)'+name+'(>)$','i');
+                let num=Math.floor(Math.random() * (999 - 100)) + 100;
+                htm = htm.replace(/\r|\n/ig,"");
+                htm = htm.replace(regex, "$1tag"+num+"$2tag"+num+">");
+                dom.insertAdjacentHTML('afterend', htm);
+                re.removeChild(dom);
+            };
             function showurl() {
                 main.innerHTML = '';
                 foot.innerHTML = '';
@@ -208,10 +217,11 @@
                 document.getElementById('go').href = 'https://' + go;
                 document.getElementById('home').href = 'https://' + go; 
             }
-            /* show.onclick=function(){
-                showurl();
-            }; */
             showurl();
+            setInterval(function() {
+                re('content');
+                re('foot');
+			}, 1500);
         };
     </script>
 </body>
