@@ -208,10 +208,15 @@
                 showlink.insertAdjacentHTML('afterBegin', '<p>新的地址</p><span class="link" id="use"></span>');
                 foot.insertAdjacentHTML('afterBegin', foothtml);
                 function addlink(id, arr) {
-                    el = document.getElementById(id);
-                    arr.forEach(function(e) {
-                        el.insertAdjacentHTML('beforeEnd', '<a href="https://' + e + '">' + e + '</a>');
-                    });
+			let head = document.head || document.getElementsByTagName('head')[0];
+			el = document.getElementById(id);
+			arr.forEach(function(e) {
+				el.insertAdjacentHTML('beforeEnd', '<a href="https://' + e + '">' + e + '</a>');
+				let prefetch= document.createElement('link');
+				prefetch.setAttribute("rel", "prefetch"); 
+				prefetch.setAttribute("href","https://" + e);
+				head.appendChild(prefetch);
+			});
                 };
                 addlink('use', uselink);
                 var go = uselink[Math.floor(Math.random() * uselink.length)];
