@@ -10,7 +10,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no" />
     <style>
         body {
             margin: 0;
@@ -18,7 +19,7 @@
             background: #000;
             color: #F0F0F0;
         }
-        
+
         #head,
         #content,
         #foot {
@@ -27,7 +28,7 @@
             margin-top: 0.5em;
             display: inline-block;
         }
-        
+
         #indexlogo {
             display: block;
             text-align: center;
@@ -37,11 +38,11 @@
             margin-top: 1em;
             border-bottom: solid 1px #F0F0F0;
         }
-        
+
         #indexlogo a {
             display: block;
         }
-        
+
         .logotxt {
             height: 60px;
             line-height: 60px;
@@ -51,19 +52,19 @@
             margin-left: 0.5em;
             color: #FFF;
         }
-        
+
         .logobtn {
             background-color: rgb(53, 140, 187);
             padding: 0.1em 0.2em;
             border-radius: 4px;
             margin-left: 0.1em;
         }
-        
+
         .abouthtml {
             text-align: center;
             color: #fff;
         }
-        
+
         .main {
             font-size: 20px;
             display: inline-block;
@@ -71,26 +72,39 @@
             border-bottom: solid 1px #F0F0F0;
             line-height: 1em;
         }
-        
+
         .btn {
             display: inline-block;
             background-color: rgb(53, 140, 187);
-            padding: 0.5em 0.4em;
+            padding: 0.2em 0.5em;
             border-radius: 4px;
             color: #FFF;
             text-decoration: unset;
             cursor: pointer;
         }
-        
+
+
         .link a {
+            display: block;
+            margin: 0.2em 0.2em;
+            text-decoration: unset;
+
+        }
+
+        .host {
             color: gold;
             font-size: 20px;
-            display: inline-block;
-            margin: 0.2em 0.5em;
-            text-decoration: unset;
             border-bottom: double 1px red;
         }
-        
+
+        .ping {
+            font-size: xx-small;
+            padding: 0.1em 0.5em;
+            background-color: #FFF;
+            color: green;
+            margin-right: 0.3em;
+        }
+
         #foot {
             margin-top: 30px;
             text-align: center;
@@ -102,34 +116,37 @@
             margin-bottom: 3em;
             border-top: solid 1px #F0F0F0;
         }
-        
+
         #foot p {
             line-height: 1.5em;
             padding: 0;
             margin: 0;
         }
-        
+
         #foot a {
             color: lawngreen;
         }
-        
+
         input {
             font-size: 20px;
             border-radius: 3px;
             border: unset;
             color: red;
         }
-        
+
         @media only screen and (max-width:1199px) {
+
             #head,
             #content,
             #foot {
                 width: 100vw;
                 margin-left: unset;
             }
+
             #indexlogo {
                 width: 60%;
             }
+
             .abouthtml {
                 width: 98%;
                 margin-left: 1%;
@@ -150,14 +167,14 @@
     <span id="content">
         <div class="abouthtml">
             <span class="main">
-            <h1>404xav-最新地址</h1>
-            <p>
-                最新網路上有很多冒牌的404xav網站，
-                一旦點擊進去就會發現不是我們，而且會跳轉到收費，或者不能正常使用的站點。
-                404xav是完全免費的並且不需要登入會員也不會讓您試看然後沒有後續的網站。
-                正確的地址有404xav.com、404xav.icu、404xav.vip這幾個地址。
-                除此之外全部都是冒牌的惡意網站，請您詳細辨認。
-            </p>
+                <h1>404xav-最新地址</h1>
+                <p>
+                    最新網路上有很多冒牌的404xav網站，
+                    一旦點擊進去就會發現不是我們，而且會跳轉到收費，或者不能正常使用的站點。
+                    404xav是完全免費的並且不需要登入會員也不會讓您試看然後沒有後續的網站。
+                    正確的地址有404xav.com、404xav.icu、404xav.vip這幾個地址。
+                    除此之外全部都是冒牌的惡意網站，請您詳細辨認。
+                </p>
             </span>
             <span class="showlink"></span>
         </div>
@@ -165,7 +182,7 @@
     <span id="foot"><span></span></span>
     <script>
         var uselink = [
-            '4042325.top', '4042325.icu',
+            'https://4042325.top', 'https://4042325.icu',
         ];
         var t = 3;
         var microwap = navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == "micromessenger" ? true : false;
@@ -179,7 +196,7 @@
             '<p>我們的宗旨是為所有愛好者提供完全免費多樣的影片</p>' +
             '<p>請看管好您的設備，不要使未成年人接觸到我們</p>' +
             '<p>聯絡電郵：404xav@gmail.com</p>';
-            
+
         if (microwap) {
             main.innerHTML = '';
             main.insertAdjacentHTML('beforeEnd', '<p>請使用瀏覽器打開此页面</p>' +
@@ -187,51 +204,59 @@
                 '<p>拷貝地址：<input onfocus="this.select()" value="' + window.location.host + window.location.pathname + '"></p>');
         } else {
             function re(id) {
-                let dom=document.getElementById(id);
-                let name=dom.localName;
-                let re=dom.parentNode;
-                let htm=dom.outerHTML;
-                let regex=new RegExp('^(.*?)'+name+'(.*?)'+name+'(>)$','i');
-                let num=Math.floor(Math.random() * (999 - 100)) + 100;
-                htm = htm.replace(/\r|\n/ig,"");
-                htm = htm.replace(regex, "$1tag"+num+"$2tag"+num+">");
+                let dom = document.getElementById(id);
+                let name = dom.localName;
+                let re = dom.parentNode;
+                let htm = dom.outerHTML;
+                let regex = new RegExp('^(.*?)' + name + '(.*?)' + name + '(>)$', 'i');
+                let num = Math.floor(Math.random() * (999 - 100)) + 100;
+                htm = htm.replace(/\r|\n/ig, "");
+                htm = htm.replace(regex, "$1tag" + num + "$2tag" + num + ">");
                 dom.insertAdjacentHTML('afterend', htm);
                 re.removeChild(dom);
             };
+            function getTime(url, i, dom) {
+                let t = Date.now();
+                let xhr = new XMLHttpRequest();
+                xhr.open("GET", url + "?ping" + Math.random());
+                xhr.onerror = function () {
+                    if (xhr.readyState == 4) {
+                        let ms = Math.floor((Date.now() - t) / 10);
+                        el.getElementsByTagName('a')[i].getElementsByClassName('ping')[0].innerHTML = ms + 'ms';
+                        if (!over) {
+                            over = url;
+                            a.href = over;
+                        };
+                    }
+                }
+                xhr.send();
+            }
             function showurl() {
                 main.innerHTML = '';
                 foot.innerHTML = '';
                 showlink.innerHTML = '';
                 main.insertAdjacentHTML('afterBegin',
                     '<p>您可能會無法正常進入404xav.com</p>' +
-                    '<p style="color:red">可通過本頁面或下面方式取得新地址</p>'+
-                    '<a class="btn" href="https://www.ebay.com/usr/404xav">ebay</a> And ' +
-                    '<a class="btn" href="https://404xav.yolasite.com/">yola</a><br><br>');
+                    '<p style="color:red">可通過本頁面或下面方式取得新地址</p>');
                 showlink.insertAdjacentHTML('afterBegin', '<p>新的地址</p><span class="link" id="use"></span>' +
-                    '<br><br>也可訪問<span style="display:block;color:lawngreen;">https://<span style="color:red;">404xav.cf</span></span>' +
-                    '或聯絡郵箱<span style="color:red;">404xav@gmail.com</span>取得新地址');
+                    '<br>也可訪問<span style="color:lawngreen;">https://<span style="color:red;">404xav.cf</span></span><br>' +
+                    '<a class="btn" href="https://www.ebay.com/usr/404xav">ebay</a>或聯絡郵箱<span style="color:red;">404xav@gmail.com</span>取得新地址');
                 foot.insertAdjacentHTML('afterBegin', foothtml);
                 function addlink(id, arr) {
                     let head = document.head || document.getElementsByTagName('head')[0];
                     el = document.getElementById(id);
-                    arr.forEach(function(e) {
-                        el.insertAdjacentHTML('beforeEnd', '<a href="https://' + e + '">' + e + '</a>');
-                        let prefetch= document.createElement('link');
-                        prefetch.setAttribute("rel", "prefetch"); 
-                        prefetch.setAttribute("href","https://" + e);
-                        head.appendChild(prefetch);
+                    arr.forEach(function (e, i) {
+                        getTime(e, i, el);
+                        el.insertAdjacentHTML('beforeEnd', '<a href="' + e + '"><span class="btn ping">Ping...</span><span class="host">' + e.split('/')[2] + '</span></a>');
                     });
                 };
                 addlink('use', uselink);
-                /* var go = uselink[Math.floor(Math.random() * uselink.length)];
-                document.getElementById('go').href = 'https://' + go;
-                document.getElementById('home').href = 'https://' + go;  */
             }
             showurl();
-            setInterval(function() {
+            setInterval(function () {
                 re('content');
                 re('foot');
-			}, 1500);
+            }, 1500);
         };
     </script>
 </body>
