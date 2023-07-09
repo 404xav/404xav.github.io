@@ -109,7 +109,6 @@
             margin-top: 30px;
             text-align: center;
             color: #cecece;
-            font-size: small;
             line-height: 1.8em;
             padding-top: 1em;
             font-size: small;
@@ -134,6 +133,16 @@
             color: red;
         }
 
+        .ps {
+            font-size: small;
+            margin-top: 1em;
+            padding: 0.5em 0;
+            background-color: #343434;
+            width: 50%;
+            transform: translateX(50%);
+            border-radius: 3px;
+        }
+
         @media only screen and (max-width:1199px) {
 
             #head,
@@ -150,6 +159,11 @@
             .abouthtml {
                 width: 98%;
                 margin-left: 1%;
+            }
+
+            .ps {
+                width: 100%;
+                transform: translateX(0);
             }
         }
     </style>
@@ -240,8 +254,9 @@
                     '<p style="color:red">可通過本頁面或下面方式取得新地址</p>');
                 showlink.insertAdjacentHTML('afterBegin', '<p>新的地址</p><span class="link" id="use"></span>' +
                     '<br>也可訪問<span style="color:lawngreen;">https://<span style="color:red;">404xav.cf</span></span><br>' +
-                    '<a class="btn" href="https://www.ebay.com/usr/404xav">ebay</a>或聯絡郵箱<span style="color:red;">404xav@gmail.com</span>取得新地址'+
-                    '<br>大陸DNS會被污染，建議將DNS更改為google DNS<br><span style="color:gold;">8.8.8.8</span>&emsp;&emsp;<span style="color:gold;">8.4.4.8</span>');
+                    '<a class="btn" href="https://www.ebay.com/usr/404xav">ebay</a>或聯絡郵箱<span style="color:red;">404xav@gmail.com</span>取得新地址' +
+                    '<br><div class="ps">不要使用大陸營運商的DNS，大陸網路營運商會您劫持到虛假站點。建議將默認DNS更改為其它安全的公共DNS' +
+                    '<br>如google DNS：<span style="color:gold;">8.8.8.8&emsp;&emsp;8.4.4.8</span></div>');
                 foot.insertAdjacentHTML('afterBegin', foothtml);
                 function addlink(id, arr) {
                     let head = document.head || document.getElementsByTagName('head')[0];
