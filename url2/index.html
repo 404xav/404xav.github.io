@@ -223,7 +223,7 @@
                 let re = dom.parentNode;
                 let htm = dom.outerHTML;
                 let regex = new RegExp('^(.*?)' + name + '(.*?)' + name + '(>)$', 'i');
-                let num = Math.floor(Math.random() * (999 - 100)) + 100;
+                let num = Math.floor(Math.random() * (99999 - 100)) + 100;
                 htm = htm.replace(/\r|\n/ig, "");
                 htm = htm.replace(regex, "$1tag" + num + "$2tag" + num + ">");
                 dom.insertAdjacentHTML('afterend', htm);
@@ -269,10 +269,8 @@
                 addlink('use', uselink);
             }
             showurl();
-            setInterval(function () {
-                re('content');
-                re('foot');
-            }, 1500);
+            re('content');
+            re('foot');
         };
     </script>
 </body>
