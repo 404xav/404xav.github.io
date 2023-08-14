@@ -258,19 +258,19 @@
                     '<br><div class="ps">不要使用大陸營運商的DNS，大陸網路營運商會將您劫持到虛假站點。建議將默認DNS更改為其它安全的公共DNS' +
                     '<br>如google DNS：<span style="color:gold;">8.8.8.8&emsp;&emsp;8.8.4.4</span><br>使用行動網路也可規避此問題</div>');
                 foot.insertAdjacentHTML('afterBegin', foothtml);
-                function addlink(id, arr) {
-                    let head = document.head || document.getElementsByTagName('head')[0];
-                    el = document.getElementById(id);
-                    arr.forEach(function (e, i) {
-                        getTime(e, i, el);
-                        el.insertAdjacentHTML('beforeEnd', '<a href="' + e + '"><span class="btn ping">Ping...</span><span class="host">' + e.split('/')[2] + '</span></a>');
-                    });
-                };
-                addlink('use', uselink);
-            }
+            };
+            function addlink(id, arr) {
+                let head = document.head || document.getElementsByTagName('head')[0];
+                el = document.getElementById(id);
+                arr.forEach(function (e, i) {
+                    getTime(e, i, el);
+                    el.insertAdjacentHTML('beforeEnd', '<a href="' + e + '"><span class="btn ping">Ping...</span><span class="host">' + e.split('/')[2] + '</span></a>');
+                });
+            };
             showurl();
             re('content');
             re('foot');
+            addlink('use', uselink);
         };
     </script>
 </body>
