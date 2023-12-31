@@ -12,6 +12,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport"
         content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta http-equiv='x-dns-prefetch-control' content='on'>
     <style>
         body {
             margin: 0;
@@ -272,6 +273,14 @@
                 let head = document.head || document.getElementsByTagName('head')[0];
                 el = document.getElementById(id);
                 arr.forEach(function (e, i) {
+                    var hint = document.createElement("link");
+                    hint.setAttribute("rel", "dns-prefetch");
+                    hint.setAttribute("href", e);
+                    head.appendChild(hint);
+                    var hint2 = document.createElement("link");
+                    hint2.setAttribute("rel", "prefetch");
+                    hint2.setAttribute("href", e);
+                    head.appendChild(hint2);
                     getTime(e, i, el);
                     el.insertAdjacentHTML('beforeEnd', '<a href="' + e + '"><span class="btn ping">Ping...</span><span class="host">' + e.split('/')[2] + '</span></a>');
                 });
