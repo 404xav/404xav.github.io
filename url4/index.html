@@ -246,11 +246,12 @@
             function getTime(url, i, dom) {
                 let t = Date.now();
                 let xhr = new XMLHttpRequest();
-                xhr.open("GET", url + "?ping" + Math.random());
-                xhr.onerror = function () {
-                    if (xhr.readyState == 4) {
+                xhr.open("GET", url + "/ping");
+                xhr.timeout = 5000;
+                xhr.onload = function () {
+                    if (this.status >= 200 && this.status < 300 && JSON.parse(xhr.responseText).res) {
                         let ms = Math.floor((Date.now() - t) / 10);
-                        el.getElementsByTagName('a')[i].getElementsByClassName('ping')[0].innerHTML = ms + 'ms';
+                        dom.getElementsByTagName('a')[i].getElementsByTagName('span')[0].innerHTML = ms + 'ms';
                         if (!over) {
                             over = url;
                             a.href = over;
