@@ -251,7 +251,7 @@
                 xhr.onload = function () {
                     if (this.status >= 200 && this.status < 300 && JSON.parse(xhr.responseText).res) {
                         let ms = Math.floor((Date.now() - t) / 10);
-                        dom.getElementsByTagName('a')[i].getElementsByTagName('span')[0].innerHTML = ms + 'ms';
+                        dom.getElementsByTagName('a')[i].getElementsByTagName('span')[0].innerHTML = '【' + ms + 'ms】';
                         if (!over) {
                             over = url;
                             a.href = over;
