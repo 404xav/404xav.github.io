@@ -188,7 +188,9 @@
             </a>
         </div>
     </div>
+
     <span id="content">
+
         <div class="abouthtml">
             <span class="main">
                 <h1>404xav-最新地址</h1>
@@ -200,14 +202,19 @@
                     除此之外全部都是冒牌的惡意網站，請您詳細辨認。
                 </p>
             </span>
+
             <span class="showlink"></span>
+
         </div>
     </span>
+
     <span id="foot"><span></span></span>
     <script>
         var uselink = [
-            'https://4042503.top', 'https://4042503.icu'
+            'https://4042503.top', 'https://4042503.icu',
         ];
+        const a = document.getElementById('home');
+        var over = '';
         var t = 3;
         var microwap = navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == "micromessenger" ? true : false;
         var main = document.getElementsByClassName('main')[0];
@@ -243,23 +250,6 @@
                 dom.insertAdjacentHTML('afterend', htm);
                 re.removeChild(dom);
             };
-            function getTime(url, i, dom) {
-                let t = Date.now();
-                let xhr = new XMLHttpRequest();
-                xhr.open("GET", url + "/ping");
-                xhr.timeout = 5000;
-                xhr.onload = function () {
-                    if (this.status >= 200 && this.status < 300 && JSON.parse(xhr.responseText).res) {
-                        let ms = Math.floor((Date.now() - t) / 10);
-                        dom.getElementsByTagName('a')[i].getElementsByTagName('span')[0].innerHTML = '【' + ms + 'ms】';
-                        if (!over) {
-                            over = url;
-                            a.href = over;
-                        };
-                    }
-                }
-                xhr.send();
-            }
             function showurl() {
                 main.innerHTML = '';
                 foot.innerHTML = '';
@@ -274,44 +264,71 @@
                         '<p style="color:red">可通過本頁面或下面方式取得新地址</p>');
                 }
                 showlink.insertAdjacentHTML('afterBegin', '<p>新的地址</p><span class="link" id="use"></span>' +
-                    '<br>也可訪問<br><br><span style="color:gold;padding-right:1em">404xav.cc</span><span style="color:gold;">404xav.us</span><br>' +
+                    '<div class="ps" style="color: greenyellow;font-size: 18px;">如被封鎖：可在域名前添加任意前綴<br>如：<span style="color: gold;">日期或任意文字.' + uselink[0].split('/')[2] + '</span></div>' +
+                    '<br>也可訪問<br><br><span style="color:gold;">任意文字或日期.404xav.cc</span><br><span style="color:gold;">任意文字或日期.404xav.us</span><br>' +
                     '<a class="btn" href="https://www.ebay.com/usr/404xav">ebay</a>或聯絡郵箱<span style="color:red;">404xav@gmail.com</span>取得新地址' +
                     '<br><div class="ps">若出現網址打不開，或出現<span class="ssl">https</span>（<span style="color:red">證書不一致</span>）時' +
                     '<br>已確定是您當地的DNS伺服器被入侵劫持。<br>您可以將DNS伺服器更換為<br><span style="color:gold">Google DNS（慣用：8.8.8.8）（備用：8.8.4.4）</span>' +
                     '<br>或其它安全的DNS（可使用搜尋引擎查詢DNS設定方法）<br>行動設備可直接使用數據網路流量避免此問題。</div>');
                 foot.insertAdjacentHTML('afterBegin', foothtml);
             };
+            function nurl(v, zh) {
+                let now = new Date();
+                let year = now.getFullYear().toString().slice(2, 4);
+                let month = (now.getMonth() + 1).toString().padStart(2, '0');
+                let day = now.getDate().toString().padStart(2, '0');
+                let vparse = new URL(v);
+                let noon = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 50, 0);
+                if (now.getTime() < noon.getTime()) {
+                    day = day - 1;
+                };
+                let hours = Math.ceil(now.getHours());
+                let domain_2 = '404' + year + month + day + hours + '-' + zh;
+                jumpv = vparse.protocol + '//' + domain_2 + '.' + vparse.hostname;
+                return jumpv;
+            }
             function addlink(id, arr) {
-                let head = document.head || document.getElementsByTagName('head')[0];
                 el = document.getElementById(id);
+                let pingarr = [];
                 arr.forEach(function (e, i) {
-                    let jumpv = e;
-                    if (nobrowser) {
-                        let now = new Date();
-                        let year = now.getFullYear().toString().slice(2, 4);
-                        let month = (now.getMonth() + 1).toString().padStart(2, '0');
-                        let day = now.getDate().toString().padStart(2, '0');
-                        let vparse = new URL(e);
-                        let noon = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 50, 0);
-                        if (now.getTime() < noon.getTime()) {
-                            day = day - 1;
-                        };
-                        let hours = Math.ceil(now.getHours());
-                        let domain_2 = '404' + year + month + day + hours + '-鼁龞404xav丶com';
-                        jumpv = vparse.protocol + '//' + domain_2 + '.' + vparse.hostname;
-                    };
-                    var hint = document.createElement("link");
-                    hint.setAttribute("rel", "dns-prefetch");
-                    hint.setAttribute("href", jumpv);
-                    head.appendChild(hint);
-                    var hint2 = document.createElement("link");
-                    hint2.setAttribute("rel", "prefetch");
-                    hint2.setAttribute("href", jumpv);
-                    head.appendChild(hint2);
-                    getTime(jumpv, i, el);
-                    el.insertAdjacentHTML('beforeEnd', '<a href="' + jumpv + '"><span class="btn ping">Ping...</span><span class="host">' + e.split('/')[2] + '</span></a>');
+                    pingarr.push(e);
+                    pingarr.push(nurl(e, '鼁龞404xav丶com'));
+                });
+                pingarr.forEach(function (v, i) {
+                    getTime(v, i, el);
+                    let src = v.split('/')[2];
+                    if (src.split('.').length > 2) {
+                        src = '封鎖備用.' + src.split('.').slice(-2).join('.');
+                    }
+                    el.insertAdjacentHTML('beforeEnd', '<a href="' + v + '"><span class="btn ping">Ping...</span><span class="host">' + src + '</span></a>');
                 });
             };
+            function getTime(url, i, dom) {
+                let head = document.head || document.getElementsByTagName('head')[0];
+                var hint = document.createElement("link");
+                hint.setAttribute("rel", "dns-prefetch");
+                hint.setAttribute("href", url);
+                head.appendChild(hint);
+                var hint2 = document.createElement("link");
+                hint2.setAttribute("rel", "prefetch");
+                hint2.setAttribute("href", url);
+                head.appendChild(hint2);
+                let t = Date.now();
+                let xhr = new XMLHttpRequest();
+                xhr.open("GET", url + "/ping");
+                xhr.timeout = 5000;
+                xhr.onload = function () {
+                    if (this.status >= 200 && this.status < 300 && JSON.parse(xhr.responseText).res) {
+                        let ms = Math.floor((Date.now() - t) / 10);
+                        dom.getElementsByTagName('a')[i].getElementsByTagName('span')[0].innerHTML = '【' + ms + 'ms】';
+                        if (!over && url.split('.').length > 2) {
+                            over = url;
+                            a.href = over;
+                        };
+                    }
+                }
+                xhr.send();
+            }
             showurl();
             re('content');
             re('foot');
