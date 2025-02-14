@@ -298,7 +298,7 @@
                     getTime(v, i, el);
                     let src = v.split('/')[2];
                     if (src.split('.').length > 2) {
-                        src = '封鎖備用.' + src.split('.').slice(-2).join('.');
+                        src = '封鎖預備.' + src.split('.').slice(-2).join('.');
                     }
                     el.insertAdjacentHTML('beforeEnd', '<a href="' + v + '"><span class="btn ping">Ping...</span><span class="host">' + src + '</span></a>');
                 });
