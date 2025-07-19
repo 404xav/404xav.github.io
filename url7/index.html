@@ -291,28 +291,29 @@
                 el = document.getElementById(id);
                 let pingarr = [];
                 arr.forEach(function (e, i) {
-                    pingarr.push(e);
                     pingarr.push(nurl(e, '鼁龞404xav丶com'));
                 });
                 pingarr.forEach(function (v, i) {
                     getTime(v, i, el);
                     let src = v.split('/')[2];
                     if (src.split('.').length > 2) {
-                        src = '封鎖預備.' + src.split('.').slice(-2).join('.');
+                        src = src.split('.').slice(-2).join('.');
                     }
                     el.insertAdjacentHTML('beforeEnd', '<a href="' + v + '"><span class="btn ping">Ping...</span><span class="host">' + src + '</span></a>');
                 });
             };
+            function addLinkTag(rel, href, attrs = {}) {
+                const link = document.createElement('link');
+                link.rel = rel;
+                link.href = href;
+                for (const [key, value] of Object.entries(attrs)) {
+                    link.setAttribute(key, value);
+                }
+                document.head.appendChild(link);
+            }
             function getTime(url, i, dom) {
-                let head = document.head || document.getElementsByTagName('head')[0];
-                var hint = document.createElement("link");
-                hint.setAttribute("rel", "dns-prefetch");
-                hint.setAttribute("href", url);
-                head.appendChild(hint);
-                var hint2 = document.createElement("link");
-                hint2.setAttribute("rel", "prefetch");
-                hint2.setAttribute("href", url);
-                head.appendChild(hint2);
+                addLinkTag('dns-prefetch', url);
+                addLinkTag('preconnect', url, { crossorigin: '' });
                 let t = Date.now();
                 let xhr = new XMLHttpRequest();
                 xhr.open("GET", url + "/ping");
