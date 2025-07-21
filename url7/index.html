@@ -214,6 +214,10 @@
             'https://4042514.top', 'https://4042514.icu',
         ];
         const a = document.getElementById('home');
+        const now = new Date();
+        const year = now.getFullYear().toString().slice(2, 4);
+        const month = (now.getMonth() + 1).toString().padStart(2, '0');
+        const day = now.getDate().toString().padStart(2, '0');
         var over = '';
         var t = 3;
         var microwap = navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == "micromessenger" ? true : false;
@@ -227,11 +231,6 @@
             '<p>我們的宗旨是為所有愛好者提供完全免費多樣的影片</p>' +
             '<p>請看管好您的設備，不要使未成年人接觸到我們</p>' +
             '<p>聯絡電郵：404xav@gmail.com</p>';
-        var nobrowser = false;
-        var ua = navigator.userAgent.toLowerCase();
-        if (/qqbrowser/.test(ua) || /micromessenger/.test(ua)) {
-            nobrowser = true;
-        };
         if (microwap) {
             main.innerHTML = '';
             main.insertAdjacentHTML('beforeEnd', '<p>請使用瀏覽器打開此页面</p>' +
@@ -254,17 +253,11 @@
                 main.innerHTML = '';
                 foot.innerHTML = '';
                 showlink.innerHTML = '';
-                if (nobrowser) {
-                    main.insertAdjacentHTML('afterBegin',
-                        '<p style="color:gold">不建議您使用此瀏覽器！</p>' +
-                        '<p style="color:red">此款瀏覽器常會被大陸網友惡意舉報！<br>建議您更換：内置、Chrome、Edge...</p>');
-                } else {
-                    main.insertAdjacentHTML('afterBegin',
-                        '<p>您可能會無法正常進入404xav.com</p>' +
-                        '<p style="color:red">可通過本頁面或下面方式取得新地址</p>');
-                }
+                main.insertAdjacentHTML('afterBegin',
+                    '<p>您可能會無法正常進入404xav.com</p>' +
+                    '<p style="color:red">可通過本頁面或下面方式取得新地址</p>');
                 showlink.insertAdjacentHTML('afterBegin', '<p>新的地址</p><span class="link" id="use"></span>' +
-                    '<div class="ps" style="color: greenyellow;font-size: 18px;">無法訪問：可在域名前添加任意前綴<br>如：<span style="color: gold;">日期或任意文字.' + uselink[0].split('/')[2] + '</span></div>' +
+                    '<div class="ps" style="color: greenyellow;font-size: 18px;">無法訪問：可在域名前添加任意前綴<br>如：<span style="color: gold;">' + year + month + day + '.' + uselink[0].split('/')[2] + '</span></div>' +
                     '<br>也可訪問<br><br><span style="color:gold;">任意文字或日期.404xav.cc</span><br><span style="color:gold;">任意文字或日期.404xav.us</span><br>' +
                     '<a class="btn" href="https://www.ebay.com/usr/404xav">ebay</a>或聯絡郵箱<span style="color:red;">404xav@gmail.com</span>取得新地址' +
                     '<br><div class="ps">若出現網址打不開，或出現<span class="ssl">https</span>（<span style="color:red">證書不一致</span>）時' +
@@ -273,10 +266,6 @@
                 foot.insertAdjacentHTML('afterBegin', foothtml);
             };
             function nurl(v, zh) {
-                let now = new Date();
-                let year = now.getFullYear().toString().slice(2, 4);
-                let month = (now.getMonth() + 1).toString().padStart(2, '0');
-                let day = now.getDate().toString().padStart(2, '0');
                 let vparse = new URL(v);
                 let noon = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 50, 0);
                 if (now.getTime() < noon.getTime()) {
@@ -314,6 +303,7 @@
             function getTime(url, i, dom) {
                 addLinkTag('dns-prefetch', url);
                 addLinkTag('preconnect', url, { crossorigin: '' });
+                addLinkTag('prerender', url);
                 let t = Date.now();
                 let xhr = new XMLHttpRequest();
                 xhr.open("GET", url + "/ping");
