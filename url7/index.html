@@ -274,7 +274,7 @@
             }
             function blackbrowser() {
                 var ua = navigator.userAgent.toLowerCase();
-                if (/qqbrowser/.test(ua) || /vivobrowser/.test(ua)) {
+                if (/qqbrowser/.test(ua) || /vivobrowser/.test(ua) || /ucbrowser/.test(ua) || /quark/.test(ua)) {
                     return true;
                 }
                 if ((/linux; u;/.test(ua) || /iphone; u;/.test(ua) || /windows; u;/.test(ua)) && !/browser/.test(ua)) {
