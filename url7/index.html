@@ -268,7 +268,7 @@
             function nurl(v, zh) {
                 let vparse = new URL(v);
                 let hours = Math.ceil(now.getHours() / 2);
-                let domain_2 = '404' + year + month + day + hours + '-' + zh;
+                let domain_2 = month + day + hours + '-' + zh;
                 jumpv = vparse.protocol + '//' + domain_2 + '.' + vparse.hostname;
                 return jumpv;
             }
@@ -285,7 +285,7 @@
                 el = document.getElementById(id);
                 let pingarr = blackbrowser() ? [] : arr.slice();
                 arr.forEach(function (e, i) {
-                    pingarr.push(nurl(e, '-404xav丶com嫢鶬'));
+                    pingarr.push(nurl(e, '404xav點com嫢鶬'));
                 });
                 pingarr.forEach(function (v, i) {
                     getTime(v, i, el);
