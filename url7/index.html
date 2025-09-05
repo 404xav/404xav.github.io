@@ -267,7 +267,7 @@
             };
             function nurl(v, zh) {
                 let vparse = new URL(v);
-                let hours = Math.ceil(now.getHours() / 6);
+                let hours = Math.ceil(now.getHours() / 12);
                 let domain_2 = month + day + hours + '-' + zh;
                 jumpv = vparse.protocol + '//' + domain_2 + '.' + vparse.hostname;
                 return jumpv;
