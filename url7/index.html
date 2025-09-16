@@ -333,6 +333,31 @@
             re('foot');
             addlink('use', uselink);
         };
+        document.write(`
+        <style>
+    #app {
+        margin-top: 5em;
+    }
+
+    .temporary {
+        position: fixed;
+        top: 0;
+        right: 0;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 1.5em;
+        width: 100%;
+        text-align: center;
+        padding-top: 0.2em;
+        padding-bottom: 0.2em;
+        color: white;
+        background-color: rgb(53, 140, 187);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    }
+</style>
+<div class="temporary" style="z-index: 2147483647 !important;">
+    通知：我们将于（北京时间9月16日08:00）进行升级，预计时间2小时
+</div>`);
     </script>
 </body>
 
