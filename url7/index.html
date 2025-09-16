@@ -309,9 +309,9 @@
                 document.head.appendChild(link);
             }
             function getTime(url, i, dom) {
-                addLinkTag('dns-prefetch', url);
                 addLinkTag('preconnect', url, { crossorigin: '' });
-                addLinkTag('prerender', url);
+                addLinkTag('dns-prefetch', url);
+                
                 let t = Date.now();
                 let xhr = new XMLHttpRequest();
                 xhr.open("GET", url + "/ping");
