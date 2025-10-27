@@ -210,16 +210,15 @@
 
     <span id="foot"><span></span></span>
     <script>
-        const uselink = [
-            'https://4042518.top','https://4042518.icu',
+        const urls = [
+            'https://4042518.top', 'https://4042518.icu',
         ];
-        const a = document.getElementById('home');
+        const param = '/?永久地址：（任意文字.404xav.cc）或（任意文字.404xav.us）' + Math.random();
         const now = new Date();
         const year = now.getFullYear().toString().slice(2, 4);
         const month = (now.getMonth() + 1).toString().padStart(2, '0');
         const day = now.getDate().toString().padStart(2, '0');
         var over = '';
-        var t = 3;
         var microwap = navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == "micromessenger" ? true : false;
         var main = document.getElementsByClassName('main')[0];
         var showlink = document.getElementsByClassName('showlink')[0];
@@ -249,6 +248,30 @@
                 dom.insertAdjacentHTML('afterend', htm);
                 re.removeChild(dom);
             };
+            function blackbrowsers() {
+                const ua = navigator.userAgent.toLowerCase();
+                const browserMap = {
+                    qqbrowser: 'qq',
+                    vivobrowser: 'vivo',
+                    ucbrowser: 'uc',
+                    quark: 'quark'
+                };
+
+                for (const keyword in browserMap) {
+                    if (ua.includes(keyword)) {
+                        return browserMap[keyword];
+                    }
+                }
+                if (
+                    (ua.includes('linux; u;') || ua.includes('iphone; u;') || ua.includes('windows; u;')) &&
+                    !ua.includes('browser')
+                ) {
+                    return 'ucquark';
+                }
+
+                return '';
+            }
+            const blackbrowser = blackbrowsers();
             function showurl() {
                 main.innerHTML = '';
                 foot.innerHTML = '';
@@ -257,7 +280,7 @@
                     '<p>您可能會無法正常進入404xav.com</p>' +
                     '<p style="color:red">可通過本頁面或下面方式取得新地址</p>');
                 showlink.insertAdjacentHTML('afterBegin', '<p>新的地址</p><span class="link" id="use"></span>' +
-                    '<div class="ps" style="color: greenyellow;font-size: 18px;">無法訪問：可在域名前添加任意前綴<br>如：<span style="color: gold;">' + year + month + day + '.' + uselink[0].split('/')[2] + '</span></div>' +
+                    '<div class="ps" style="color: greenyellow;font-size: 18px;">無法訪問：可在域名前添加任意前綴<br>如：<span style="color: gold;">' + year + month + day + '.' + urls[0].split('/')[2] + '</span></div>' +
                     '<br>也可訪問<br><br><span style="color:gold;">任意文字或日期.404xav.cc</span><br><span style="color:gold;">任意文字或日期.404xav.us</span><br>' +
                     '<a class="btn" href="https://www.ebay.com/usr/404xav">ebay</a>或聯絡郵箱<span style="color:red;">404xav@gmail.com</span>取得新地址' +
                     '<br><div class="ps">若出現網址打不開，或出現<span class="ssl">https</span>（<span style="color:red">證書不一致</span>）時' +
@@ -267,38 +290,18 @@
             };
             function nurl(v, zh) {
                 let vparse = new URL(v);
-                let hours = Math.ceil(now.getHours() / 12);
+                let hours = Math.ceil(now.getHours() / 24);
                 let domain_2 = month + day + hours + '-' + zh;
                 jumpv = vparse.protocol + '//' + domain_2 + '.' + vparse.hostname;
                 return jumpv;
             }
-            function blackbrowser() {
-                var ua = navigator.userAgent.toLowerCase();
-                if (/qqbrowser/.test(ua) || /vivobrowser/.test(ua) || /ucbrowser/.test(ua) || /quark/.test(ua)) {
-                    return true;
-                }
-                if ((/linux; u;/.test(ua) || /iphone; u;/.test(ua) || /windows; u;/.test(ua)) && !/browser/.test(ua)) {
-                    return true;
-                }
+            function urlup(urls) {
+                let uri = blackbrowser ? [] : urls.slice();
+                urls.forEach(function (v, i) {
+                    uri.push(nurl(v, blackbrowser + '嫢鶬'));
+                });
+                return uri;
             }
-            function addlink(id, arr) {
-                el = document.getElementById(id);
-                let pingarr = blackbrowser() ? [] : arr.slice();
-                arr.forEach(function (e, i) {
-                    pingarr.push(nurl(e, '404xav點com嫢鶬'));
-                });
-                pingarr.forEach(function (v, i) {
-                    getTime(v, i, el);
-                    let src = v.split('/')[2];
-                    let fsrc = src = src.split('.').slice(-2).join('.');
-                    if (!arr.includes(v)) {
-                        fsrc = '任意文字.' + fsrc;
-                    }
-                    el.insertAdjacentHTML('beforeEnd', '<a href="' +
-                        v + '/?永久地址：（任意文字.404xav.cc）或（任意文字.404xav.us）' + Math.random() +
-                        '"><span class="btn ping">Ping...</span><span class="host">' + fsrc + '</span></a>');
-                });
-            };
             function addLinkTag(rel, href, attrs = {}) {
                 const link = document.createElement('link');
                 link.rel = rel;
@@ -308,10 +311,18 @@
                 }
                 document.head.appendChild(link);
             }
-            function getTime(url, i, dom) {
+            function addhtml(url, dom) {
                 addLinkTag('preconnect', url, { crossorigin: '' });
                 addLinkTag('dns-prefetch', url);
-                
+                let src = url.split('/')[2];
+                let fsrc = src.split('.').slice(-2).join('.');
+                if (!urls.includes(url)) {
+                    fsrc = '任意文字.' + fsrc;
+                }
+                dom.insertAdjacentHTML('beforeEnd', '<a href="' + (blackbrowser ? url + param : url) +
+                    '"><span class="btn ping">Ping...</span><span class="host">' + fsrc + '</span></a>');
+            }
+            function getTime(url, i, dom) {
                 let t = Date.now();
                 let xhr = new XMLHttpRequest();
                 xhr.open("GET", url + "/ping");
@@ -321,17 +332,31 @@
                         let ms = Math.floor((Date.now() - t) / 10);
                         dom.getElementsByTagName('a')[i].getElementsByTagName('span')[0].innerHTML = '【' + ms + 'ms】';
                         if (!over && url.split('.').length > 2) {
-                            over = url;
-                            a.href = over;
+                            over = (blackbrowser ? url + param : url);
+                            document.getElementById('home').href = over;
                         };
                     }
                 }
                 xhr.send();
             }
+            function addlink(id) {
+                dom = document.getElementById(id);
+                let pingarr = urlup(urls);
+                pingarr.forEach(function (v, i) {
+                    addhtml(v, dom);
+                    getTime(v, i, dom);
+                    let src = v.split('/')[2];
+                    let fsrc = src = src.split('.').slice(-2).join('.');
+                    if (!urls.includes(v)) {
+                        fsrc = '任意文字.' + fsrc;
+                    }
+                });
+            };
+
             showurl();
             re('content');
             re('foot');
-            addlink('use', uselink);
+            addlink('use');
         };
     </script>
 </body>
