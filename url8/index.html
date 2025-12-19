@@ -323,29 +323,34 @@
                 dom.insertAdjacentHTML('beforeEnd', '<a href="' + (blackbrowser ? url + param : url) +
                     '"><span class="btn ping">Ping...</span><span class="host">' + fsrc + '</span></a>');
             }
-            function getTime(url, i, dom) {
-                let t = Date.now();
-                let xhr = new XMLHttpRequest();
-                xhr.open("GET", url + "/ping");
-                xhr.timeout = 5000;
-                xhr.onload = function () {
-                    if (this.status >= 200 && this.status < 300 && JSON.parse(xhr.responseText).res) {
-                        let ms = Math.floor((Date.now() - t) / 10);
-                        dom.getElementsByTagName('a')[i].getElementsByTagName('span')[0].innerHTML = '【' + ms + 'ms】';
-                        if (!over && url.split('.').length > 2) {
-                            over = (blackbrowser ? url + param : url);
-                            document.getElementById('home').href = over;
-                        };
-                    }
-                }
-                xhr.send();
+            function ping(url, callback) {
+                const startTime = performance.now();
+                fetch(url, {
+                    method: "HEAD",
+                    mode: "no-cors"
+                })
+                    .then(() => {
+                        const endTime = performance.now();
+                        callback(Math.round(endTime - startTime));
+                    })
+                    .catch(() => {
+                        const endTime = performance.now();
+                        callback(Math.round(endTime - startTime));
+                    });
             }
             function addlink(id) {
                 dom = document.getElementById(id);
                 let pingarr = urlup(urls);
+                let fast = '';
                 pingarr.forEach(function (v, i) {
                     addhtml(v, dom);
-                    getTime(v, i, dom);
+                    ping(v, function (ms) {
+                        dom.getElementsByTagName('a')[i].getElementsByTagName('span')[0].innerHTML = Math.round(ms) + 'ms';
+                        if (!fast) {
+                            fast = (blackbrowser ? v + param : v);
+                            document.getElementsByTagName('a')[0].href = fast;
+                        }
+                    });
                     let src = v.split('/')[2];
                     let fsrc = src = src.split('.').slice(-2).join('.');
                     if (!urls.includes(v)) {
