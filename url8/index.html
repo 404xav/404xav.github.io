@@ -211,7 +211,7 @@
     <span id="foot"><span></span></span>
     <script>
         const urls = [
-            'https://4042519.top', 'https://4042519.icu',
+            'https://4042601.top', 'https://4042601.icu',
         ];
         /*const param = '/?永久地址：（任意文字.404xav.cc）或（任意文字.404xav.us）' + Math.random();*/
         const param = '';
@@ -314,7 +314,7 @@
                 });
                 addLinkTag('prefetch', now);
 
-                let nextdomain_2 = tomorrow.m + tomorrow.d + hours + '-' + zh;
+                let nextdomain_2 = tomorrow.m + tomorrow.d + hours + zh;
                 let next = vparse.protocol + '//' + nextdomain_2 + '.' + vparse.hostname;
                 addLinkTag('dns-prefetch', next);
                 addLinkTag('preconnect', next, {
@@ -328,7 +328,7 @@
                 let uri = blackbrowser ? [] : urls.slice();
                 uri = [];
                 urls.forEach(function (v, i) {
-                    uri.push(nurl(v, blackbrowser + '404xav點com嫢鶬'));
+                    uri.push(nurl(v, blackbrowser + '404xav點com'));
                 });
                 return uri;
             }
