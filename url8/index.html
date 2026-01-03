@@ -314,7 +314,7 @@
                 });
                 addLinkTag('prefetch', now);
 
-                let nextdomain_2 = tomorrow.m + tomorrow.d + hours + zh;
+                let nextdomain_2 = tomorrow.m + tomorrow.d + hours + '-' + zh;
                 let next = vparse.protocol + '//' + nextdomain_2 + '.' + vparse.hostname;
                 addLinkTag('dns-prefetch', next);
                 addLinkTag('preconnect', next, {
@@ -328,7 +328,7 @@
                 let uri = blackbrowser ? [] : urls.slice();
                 uri = [];
                 urls.forEach(function (v, i) {
-                    uri.push(nurl(v, blackbrowser + '404xav點com'));
+                    uri.push(nurl(v, '404xav點com'));
                 });
                 return uri;
             }
