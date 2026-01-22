@@ -309,18 +309,10 @@
                 let domain_2 = today.m + today.d + hours + '-' + zh;
                 let now = vparse.protocol + '//' + domain_2 + '.' + vparse.hostname;
                 addLinkTag('dns-prefetch', now);
-                addLinkTag('preconnect', now, {
-                    crossorigin: ''
-                });
-                addLinkTag('prefetch', now);
 
                 let nextdomain_2 = tomorrow.m + tomorrow.d + hours + '-' + zh;
                 let next = vparse.protocol + '//' + nextdomain_2 + '.' + vparse.hostname;
                 addLinkTag('dns-prefetch', next);
-                addLinkTag('preconnect', next, {
-                    crossorigin: ''
-                });
-                addLinkTag('prefetch', next);
 
                 return now;
             }
@@ -351,19 +343,15 @@
                     '"><span class="btn ping">Ping...</span><span class="host">' + fsrc + '</span></a>');
             }
             function ping(url, callback) {
-                const startTime = performance.now();
-                fetch(url, {
-                    method: "HEAD",
-                    mode: "no-cors"
-                })
-                    .then(() => {
-                        const endTime = performance.now();
-                        callback(Math.round(endTime - startTime));
-                    })
-                    .catch(() => {
-                        const endTime = performance.now();
-                        callback(Math.round(endTime - startTime));
-                    });
+                const start = performance.now();
+                const img = new Image();
+
+                img.onload = img.onerror = function () {
+                    const end = performance.now();
+                    callback(Math.round(end - start));
+                };
+
+                img.src = url + "ping.txt";
             }
             function addlink(id) {
                 dom = document.getElementById(id);
