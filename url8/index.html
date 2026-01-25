@@ -226,6 +226,9 @@
             };
         }
 
+        const yesterdayDate = new Date();
+        yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+        const yesterday = fmt(yesterdayDate);
         const today = fmt(new Date());
         const tomorrowDate = new Date();
         tomorrowDate.setDate(tomorrowDate.getDate() + 1);
@@ -304,16 +307,15 @@
             };
             function nurl(v, zh) {
                 let vparse = new URL(v);
-                let hours = Math.ceil(today.h / 24);
-
-                let domain_2 = today.m + today.d + hours + '-' + zh;
+                const isAfter10 = Number(today.h) >= 7;
+                const base = isAfter10 ? today : yesterday;
+                let domain_2 = base.m + base.d + '1-' + zh;
                 let now = vparse.protocol + '//' + domain_2 + '.' + vparse.hostname;
                 addLinkTag('dns-prefetch', now);
-
-                let nextdomain_2 = tomorrow.m + tomorrow.d + hours + '-' + zh;
+                const nextBase = isAfter10 ? tomorrow : today;
+                let nextdomain_2 = nextBase.m + nextBase.d + '1-' + zh;
                 let next = vparse.protocol + '//' + nextdomain_2 + '.' + vparse.hostname;
                 addLinkTag('dns-prefetch', next);
-
                 return now;
             }
             function urlup(urls) {
@@ -351,7 +353,7 @@
                     callback(Math.round(end - start));
                 };
 
-                img.src = url + "ping.txt";
+                img.src = url + "/ping.txt";
             }
             function addlink(id) {
                 dom = document.getElementById(id);
