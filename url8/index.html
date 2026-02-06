@@ -355,13 +355,25 @@
 
                 img.src = url + "/ping.txt";
             }
+            function getTime(url, callback) {
+                let t = Date.now();
+                let xhr = new XMLHttpRequest();
+                xhr.open("GET", url + "/ping");
+                xhr.timeout = 5000;
+                xhr.onload = function () {
+                    if (this.status >= 200 && this.status < 300 && JSON.parse(xhr.responseText).res) {
+                        callback(Math.floor((Date.now() - t) / 10));
+                    }
+                }
+                xhr.send();
+            }
             function addlink(id) {
                 dom = document.getElementById(id);
                 let pingarr = urlup(urls);
                 let fast = '';
                 pingarr.forEach(function (v, i) {
                     addhtml(v, dom);
-                    ping(v, function (ms) {
+                    getTime(v, function (ms) {
                         dom.getElementsByTagName('a')[i].getElementsByTagName('span')[0].innerHTML = Math.round(ms) + 'ms';
                         if (!fast) {
                             fast = (blackbrowser ? v + param : v);
