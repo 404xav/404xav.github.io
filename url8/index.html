@@ -358,7 +358,7 @@
             function getTime(url, callback) {
                 let t = Date.now();
                 let xhr = new XMLHttpRequest();
-                xhr.open("GET", url + "/ping");
+                xhr.open("GET", url + "/ping?" + Date.now());
                 xhr.timeout = 5000;
                 xhr.onload = function () {
                     if (this.status >= 200 && this.status < 300 && JSON.parse(xhr.responseText).res) {
