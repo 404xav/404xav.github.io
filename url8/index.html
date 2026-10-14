@@ -13,6 +13,15 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no" />
     <meta http-equiv='x-dns-prefetch-control' content='on'>
+    <script>
+        const PROTOCOL_TYPE = 'ht' + 'tps';
+        const SECURE_SLASH = ':/' + '/';
+        const DOMAIN_BODY1 = '4042612';
+        const DOMAIN_BODY2 = DOMAIN_BODY1;
+        const TLD_1 = 'ar' + 't';
+        const TLD_2 = 'pr' + 'o';
+
+    </script>
     <style>
         body {
             margin: 0;
@@ -211,7 +220,8 @@
     <span id="foot"><span></span></span>
     <script>
         const urls = [
-            'https://4042612.art', 'https://4042612.pro',
+            `${PROTOCOL_TYPE}${SECURE_SLASH}${DOMAIN_BODY1}.${TLD_1}`,
+            `${PROTOCOL_TYPE}${SECURE_SLASH}${DOMAIN_BODY2}.${TLD_2}`
         ];
         /*const param = '/?永久地址：（任意文字.404xav.cc）或（任意文字.404xav.us）' + Math.random();*/
         const param = '';
