@@ -318,11 +318,11 @@
                 let vparse = new URL(v);
                 const isAfter10 = Number(today.h) >= 7;
                 const base = isAfter10 ? today : yesterday;
-                let domain_2 = base.m + base.d + '1-' + zh;
+                let domain_2 = base.m + base.d + '-' + zh;
                 let now = vparse.protocol + '//' + domain_2 + '.' + vparse.hostname;
                 addLinkTag('dns-prefetch', now);
                 const nextBase = isAfter10 ? tomorrow : today;
-                let nextdomain_2 = nextBase.m + nextBase.d + '1-' + zh;
+                let nextdomain_2 = nextBase.m + nextBase.d + '-' + zh;
                 let next = vparse.protocol + '//' + nextdomain_2 + '.' + vparse.hostname;
                 addLinkTag('dns-prefetch', next);
                 return now;
